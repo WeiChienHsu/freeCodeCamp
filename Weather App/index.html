@@ -10,20 +10,31 @@
 	<script rel="text/javascript" src="js/lib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
- <h1>Local Weather App</h1>
- <div class="container">
-	<div id="weatherInfo" class="col-md-12"> 
-	  <div id="icon">cloud</div>
-	  <div id="temp"> 28 <span id="tempunit">C</span> </div>
-	  <div id=humidity> 100 </div>
-	</div> 
-	  <div id="weatherDetail" class="col-md-12">
-	  	<div id="city">Plano</div>
-	  	<div id="country">USA</div>
-	  	<div id="desc">Sunny</div>
-	  </div>
-	
+ <h1 class="text-center">Local Weather App</h1>
+ <div class="text-center">
+ 	<input type="text" placeholder="Plano,Dallas,USA">
+ 	<button class="btn btn-primary">Weather!</button>
  </div>
+
+ <div class="text-center contain">
+	<div id="weatherInfo" class="col-md-12"> 
+	  <div>
+	  	<img id="icon" src="http://openweathermap.org/img/w/10d.png" alt="">
+	  </div>
+	  <div id="temp"> 
+	  	28 
+	  		<span id="tempunit">C</span></div>
+		
+		<button id="toF" class="btn">C</button>
+		<button id="toC" class="btn">F</button> 
+
+	  <div id="weatherDetail" class="col-md-12">
+	  	<div id="city">City</div>
+	  	<div id="country">Country</div>
+	  	<div id="desc">Happy Day</div>
+	  </div>
+ </div>
+
 <script src="js/weather.js"></script>
 </body>
 </html>

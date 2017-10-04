@@ -23,7 +23,12 @@ function getWeaterInfo(lat,lon){
 		type:"GET",
 		url:urlString,
 		success:function(data){
-			console.log(data.name);
+			$("#icon").attr("src",data.weather[0].icon);
+			currentTempInCelsius = Math.round(data.main.temp * 10) / 10;
+      		$("#temp").text(currentTempInCelsius + " " + String.fromCharCode(176)+tempUnit);
+      		$("#city").text(data.name);
+      		$("#country").text(data.sys.country);
+      		$("desc").text(data.weather[0].main);
 		}
 	})	
 

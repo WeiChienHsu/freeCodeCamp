@@ -1,1 +1,42 @@
-weather.css
+body {
+  background: #247;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #eee;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 30px;
+  height: 100%;
+}
+
+.contain{
+	width:360px;
+	margin:100px auto;
+	background-color: #f7f7f7;
+	box-shadow: 0 0 3px rgba(0,0,0, 0.2);
+}
+
+#icon{
+	width: 150px;
+}
+
+#weatherDetail{
+	margin-top: 20px;
+	background-color: white;
+	border-radius: 50px;
+	padding: 10px 0
+
+
+}
+
+#city,#country{
+	display: inline-block;
+	color:black;
+}
+
+#desc{
+	color: black;
+	font-size: 40px;
+	font-weight:bold;
+}

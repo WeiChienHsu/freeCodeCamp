@@ -5,7 +5,7 @@ $(document).ready(function(){
 	  var html = "";
 	  json.forEach(function(val){
 	    html += "<div>";
-		html += "<p>" + val.quote + "</p>";
+		html +=  val.quote;
 		html += "</div>"; 	
 	    })
 	$("#message").html(html);

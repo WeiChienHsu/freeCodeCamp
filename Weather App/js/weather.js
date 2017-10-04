@@ -21,13 +21,6 @@ $("#toC").on("click",function(){
 	}
 });
 
-// function fToC(){
-// 	if($("#tempUnit").text() !== "C"){
-// 		var newTempInF = Math.round(parseInt($("#temp").text()) -32 * (5 / 9) );
-// 		$("#temp").text = newTempInF;
-// 		$("#tempUnit").text = "C";
-// 	}
-// }
 
 
 $( document ).ready(function(){
@@ -41,8 +34,6 @@ $( document ).ready(function(){
     console.log("Geolocation is not supported by this browser.");
   }
 })
-
-
 
 function getWeaterInfo(lat,lon){ 
 	//When you have actual lat and lon data
@@ -61,5 +52,6 @@ function getWeaterInfo(lat,lon){
       		$("tempUnit").text(" " + String.fromCharCode(176)+tempUnit);
 		}
 	})	
-
   }
+
+

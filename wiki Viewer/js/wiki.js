@@ -27,15 +27,23 @@ function getData(a) {
     dataType: 'json',
     success: function(data) {
       if(!data.query) {
-       document.getElementById("resultsBox").innerHTML = "<p class='text-center' style='padding:5px;margin-top:5px;'>There were no results matching the query.</p>"; 
+       $("#resultsBox").html = "<p class='text-center' style='padding:5px;margin-top:5px;'>There were no results matching the query.</p>"; 
       } else {
       pageIDs = data.query.pageids;
       pageData = data.query.pages;
-      console.log(pageIDs);
+      formatData(pageIDs,pageData);
       }
-    
     }
-
   });
 }
+
+function formatData(pageID,pageData){
+	var id = 0;
+	var pageUrl = "http://en.wikipedia.org/?curid=";
+	for(var i=0; i< pageID.length ; i++){
+		id = pageID[i];
+		 document.getElementById("resultBox").innerHTML = document.getElementById("resultBox").innerHTML + " " + '<div id="result"> <h4><a href="'+pageUrl+id+'" target="_black">'+pageData[id].title+'</a></h4><p>'+pageData[id].extract+'</p></div>';
+	}
+}
+
 

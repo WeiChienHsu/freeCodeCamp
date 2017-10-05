@@ -17,7 +17,31 @@
 
 //http://en.wikipedia.org/?curid=
 
-getData("apple");
+
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        search();
+    }
+});
+
+$("#searchbtn").click(function(){
+	search();
+})
+
+function search(){
+	var title = $('input[type="text"]').val();
+	var msg = $(".message");
+	$('input[type="text"]').val("");
+	if (title === "" || title === " " || title == "Search..") {
+    msg.text("Please input a value to search!");
+    msg.fadeIn("fast");
+    msg.css("display", "block");
+    msg.fadeOut(5000);
+  } else {
+    getData(title);
+  }
+}
+
 
 function getData(a) {
   var pageData = [], pageIDs=[];
@@ -27,7 +51,8 @@ function getData(a) {
     dataType: 'json',
     success: function(data) {
       if(!data.query) {
-       $("#resultsBox").html = "<p class='text-center' style='padding:5px;margin-top:5px;'>There were no results matching the query.</p>"; 
+       $(".message").text("There were no results matching the query. " + a );
+       refreshContent();
       } else {
       pageIDs = data.query.pageids;
       pageData = data.query.pages;
@@ -38,6 +63,7 @@ function getData(a) {
 }
 
 function formatData(pageID,pageData){
+	refreshContent();
 	var id = 0;
 	var pageUrl = "http://en.wikipedia.org/?curid=";
 	for(var i=0; i< pageID.length ; i++){
@@ -46,4 +72,6 @@ function formatData(pageID,pageData){
 	}
 }
 
-
+function refreshContent(){
+	 document.getElementById("resultBox").innerHTML = "";
+}

@@ -8,7 +8,10 @@ $(document).ready(function(){
     "ESL_SC2",
     "eternalenvyy",
     "wagamamatv",
-    "freecodecamp"
+    "freecodecamp",
+    "OgamingSC2",
+    "cretetion",
+    "RobotCaleb",
   ];
 
 users.forEach(function(user) {
@@ -33,17 +36,13 @@ $.getJSON(makeURL("channels",user), function(data){
     logo = data.logo;
     url = data.url;
     content = data.status; 
-
-    $("#status").prepend('<div class="col-lg-4 col-sm-6"><div class="thumbnail status"> <img src="' +logo+ '" alt="logo"><a href="'+url+'"><h4>'+name+'</h4></a><p id="content">'+content+'</p><p id="description"> Online </p></div>');
-    // add description if user is online
+    $("#status").prepend('<div class="col-lg-4 col-sm-6"><div class="thumbnail status"> <img src="' +logo+ '" alt="logo"><a href="'+url+'"><h4>'+name+'</h4></a><p id="description"></p><p>'+game+'</p></div>');
      if(status === "online"){
        $("#description").text(content);
      };
     
-    }); //channels
-  }); //streams
-}); //forEach
+    }); 
+  }); 
+ }); 
   
-   
-  
-}); //document
+}); 

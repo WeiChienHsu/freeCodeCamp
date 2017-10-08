@@ -1,23 +1,3 @@
-// var key = "apple";
-// function search(key){
-
-//   $.ajax({
-// 	type:"GET",
-// 	url:'https://en.wikipedia.org/w/api.php?action=query&format=json&requestid=NitinNair89&prop=extracts&indexpageids=1&generator=search&exchars=450&explaintext=1&exlimit=10&exintro=1&gsrsearch=' + key + '&gsrlimit=10&gsrqiprofile=classic&callback=?',
-// 	success:function(data){
-// 		console.log(data.query.page.title);
-// 	}
-// });
-// };
-
-// search(key);
-
-
-//https://en.wikipedia.org/w/api.php?action=query&prop=info&pageids=18630637&inprop=url
-
-//http://en.wikipedia.org/?curid=
-
-
 $(document).keypress(function(e) {
     if(e.which == 13) {
         search();

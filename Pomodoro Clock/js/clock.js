@@ -2,19 +2,18 @@ $(document).ready(function(){
   var breakTimeDisplay = 5,  sessionTimeDisplay = 25; //default;
 
  // click Reset
-  
+
   
 
   //CountDown session
-$("#start").click(function(){ 
-// need to put all function in this local area!!!
+$("#start").click(function(){
+  // need to put all function in this local action...
  
     $("#sessionMinus,#sessionPlus,#breakMinus,#breakPlus,#start").hide();
     $("#status").prepend('<button id="reset">Reset</button>');
-    var counter = setInterval(sessionTimer,1000);
+    var counter = setInterval(sessionTimer,1000); 
 
-
-  
+ 
  function sessionTimer(){
    if(sessionTimeDisplay === 0){
      clearInterval(counter);
@@ -23,21 +22,45 @@ $("#start").click(function(){
    sessionTimeDisplay -= 1;
    $(".displayTime").text(sessionTimeDisplay);
      }
- }
-  
-  function breakTimer(){
+ 
+   function breakTimer(){
     $(".displayTitle").text("Break");
     $(".displayTime").text(breakTimeDisplay);
     if(breakTimeDisplay === 0){
       clearInterval(startBreak);
+      reset();
+    }else{
+       breakTimeDisplay -= 1;
+       $(".displayTime").text(breakTimeDisplay);
     }
-    breakTimeDisplay -= 1;
-    $(".displayTime").text(breakTimeDisplay);
+
   }
   
- });
+  $("#reset").on("click",function(){
+    reset();
+  });
+
+  function reset(){
+  clearInterval(counter);
+  clearInterval(startBreak)
+  breakTimeDisplay = 5;
+  sessionTimeDisplay = 25;
+  
+  $("#sessionDisplay,.displayTime").text(sessionTimeDisplay);
+  $("#sessionMinus,#sessionPlus,#breakMinus,#breakPlus,#start").show();
+  $("#reset").hide();
+  }
+ 
+ 
+ }
   
   
+
+    
+
+  
+  }); // on click 'start'
+ 
   // Session Length setting
   $("#sessionMinus").on("click",function(){
     if(sessionTimeDisplay > 1){

@@ -1,28 +1,48 @@
 $(document).ready(function(){
   var breakTimeDisplay = 5,  sessionTimeDisplay = 25; //default;
-  var sessionCounter = $("#sessionDisplay").text();
-  var breakCounter = $("#breakDisplay").text();
- 
+
+ // click Reset
+  
+  
 
   //CountDown session
-$("#start").click(function(){
-    $("#sessionMinus,#sessionPlus,#breakMinus,#breakPlus").hide();
-    $("#star").html("Reset");
+$("#start").click(function(){ 
+// need to put all function in this local area!!!
+ 
+    $("#sessionMinus,#sessionPlus,#breakMinus,#breakPlus,#start").hide();
+    $("#status").prepend('<button id="reset">Reset</button>');
     var counter = setInterval(sessionTimer,1000);
-   
-});
+
+
   
  function sessionTimer(){
-    sessionCounter -= 1;
-   
-   $(".displayTime").text(sessionCounter);
+   if(sessionTimeDisplay === 0){
+     clearInterval(counter);
+     var startBreak = setInterval(breakTimer,1000);
+   }else{
+   sessionTimeDisplay -= 1;
+   $(".displayTime").text(sessionTimeDisplay);
+     }
  }
- 
+  
+  function breakTimer(){
+    $(".displayTitle").text("Break");
+    $(".displayTime").text(breakTimeDisplay);
+    if(breakTimeDisplay === 0){
+      clearInterval(startBreak);
+    }
+    breakTimeDisplay -= 1;
+    $(".displayTime").text(breakTimeDisplay);
+  }
+  
+ });
+  
+  
   // Session Length setting
   $("#sessionMinus").on("click",function(){
     if(sessionTimeDisplay > 1){
       minusSession();
-      $("#sessionDisplay").text(sessionTimeDisplay);
+      $("#sessionDisplay,.displayTime").text(sessionTimeDisplay);
     } else{
     console.log("error. Time couldn't lower than 1");
       sessionTimeDisplay = 1;
@@ -32,7 +52,7 @@ $("#start").click(function(){
   $("#sessionPlus").on("click",function(){
     if(sessionTimeDisplay <= 60){
       plusSession();
-      $("#sessionDisplay").text(sessionTimeDisplay);
+      $("#sessionDisplay,.displayTime").text(sessionTimeDisplay);
       
     } else{
       console.log("error. Time couldn't pass 60");

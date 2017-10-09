@@ -1,26 +1,28 @@
 $(document).ready(function(){
-  var breakTimeDisplay = 5,  sessionTimeDisplay = 25; //default;
-
- // click Reset
-
-  
+  var breakTimeDisplay = 5,  sessionTimeDisplay = 25; 
+  //default
 
   //CountDown session
 $("#start").click(function(){
-  // need to put all function in this local action...
- 
     $("#sessionMinus,#sessionPlus,#breakMinus,#breakPlus,#start").hide();
     $("#status").prepend('<button id="reset">Reset</button>');
     var counter = setInterval(sessionTimer,1000); 
-
+    
+    // change to minutes  
+    sessionTimeDisplay *= 60;
+    breakTimeDisplay *= 60;
  
- function sessionTimer(){
+  function sessionTimer(){
    if(sessionTimeDisplay === 0){
      clearInterval(counter);
      var startBreak = setInterval(breakTimer,1000);
    }else{
    sessionTimeDisplay -= 1;
-   $(".displayTime").text(sessionTimeDisplay);
+   if(sessionTimeDisplay%60>=10){ // two ways to display seconds
+     $(".displayTime").text(Math.floor(sessionTimeDisplay/60) + ":" + sessionTimeDisplay%60);
+   } else{
+     $(".displayTime").text(Math.floor(sessionTimeDisplay/60) + ":" +"0"+ sessionTimeDisplay%60);
+   }
      }
  
    function breakTimer(){
@@ -31,7 +33,11 @@ $("#start").click(function(){
       reset();
     }else{
        breakTimeDisplay -= 1;
-       $(".displayTime").text(breakTimeDisplay);
+       if(breakTimeDisplay%60>=10){
+         $(".displayTime").text(Math.floor(breakTimeDisplay/60) + ":" + breakTimeDisplay%60);
+        } else{
+        $(".displayTime").text(Math.floor(breakTimeDisplay/60) + ":" +"0"+ breakTimeDisplay%60);
+      }  
     }
 
   }
@@ -49,18 +55,10 @@ $("#start").click(function(){
   $("#sessionDisplay,.displayTime").text(sessionTimeDisplay);
   $("#sessionMinus,#sessionPlus,#breakMinus,#breakPlus,#start").show();
   $("#reset").hide();
-  }
- 
- 
- }
-  
-  
-
-    
-
-  
+  } 
+ } // reset
   }); // on click 'start'
- 
+
   // Session Length setting
   $("#sessionMinus").on("click",function(){
     if(sessionTimeDisplay > 1){
@@ -89,8 +87,6 @@ $("#start").click(function(){
   function minusSession(){
     sessionTimeDisplay -=1;
   }
-  
-  
   
   // break Length setting
   $("#breakMinus").on("click",function(){

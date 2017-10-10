@@ -9,6 +9,11 @@
 </head>
 <body>
   <h1>Tic Tac Toe</h1>
+ <div id="giveRule">
+ 	<button id="O"> O </button>
+ 	<button id="X"> X </button>
+ </div>
+
   <table>
   	<tr>
   		<td class="cell" id="0"></td>
@@ -21,15 +26,18 @@
   		<td class="cell" id="5"></td>
   	</tr>
   	<tr>
-  		<td class="cell" id="6">O</td>
+  		<td class="cell" id="6"></td>
   		<td class="cell" id="7"></td>
   		<td class="cell" id="8"></td>
   	</tr>
   </table>
   <div class="endgame"> 
-	<div class="text"></div>
+	<div class="text">end</div>
   </div>
-  <button id="startGame"> Replay </button>
+  <div id="status">
+  <button id="startGame"> Start Game </button>
+  <button id="replay" > Replay </button>
+	</div>
 
 
 <script src="js/tic.js"></script>

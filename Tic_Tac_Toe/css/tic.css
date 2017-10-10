@@ -57,9 +57,27 @@ button{
 	-moz-transition:all 0.5s;
 	outline: none;
 	font-size: 50px;
+	,argin
 }
 
 button:hover{
 	color:white;
 	background-color: steelblue;
+	margin: 0 30px;
+}
+
+td {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+.endgame{
+	display: none;
+	width: 400px;
+	top: 20px;
+	background-color: rgba(205, 133, 63, 0.7);
+	border-radius: 5px;
+	color: white;
+	font-size: 2em;
+	margin: 10px auto;
 }

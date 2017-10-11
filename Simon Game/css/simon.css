@@ -29,6 +29,7 @@ h1 {
   height: 290px;
   z-index: 6;
   border: 5px solid black;
+  cursor:pointer;
 }
 
 .green {
@@ -117,6 +118,7 @@ h1 {
   color: white;
   padding-top: 12px;
   font-size: 10px;
+  cursor:pointer;
 }
 
 .start {  

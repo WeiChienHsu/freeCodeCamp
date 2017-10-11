@@ -2,12 +2,10 @@ var record = [0,1,2,3,4,5,6,7,8];
 var player1 = "O";
 var player2 = 'X';
 var choseId;
-// var turn = player2;
 var aiRecord;
 var turn;
-var playerChose=[];
-
-
+var playerChose=["O"];
+var random;
 
 chooseOX();
 
@@ -24,22 +22,28 @@ function chooseOX(){
 	$("table,#startGame,#replay,#win,#lose,#tie").hide();
 	//choose O
 	$("#O").on("click",function(){
+		playerChose.shift();
 		playerChose.push("O"); 
 		$("#startGame").show();
 		return turn = player1;
 	});
 	$("#X").on("click",function(){
+		playerChose.shift();
 		playerChose.push("X"); 
 		$("#startGame").show();
 		return turn = player2;
 	});
+
+	console.log(aiRecord);
 
 
 	//choose X
 
 }
 
-$(".cell").on("click",function(){
+function gameStart(){
+	$(".cell").on("click",function(){
+	$(this).off('click');
 	whoWin();
 	// var turn = player1; //choose O or X to start;
 	choseId = $(this).attr('id');
@@ -53,15 +57,21 @@ $(".cell").on("click",function(){
 	if (aiRecord.length == 0){
 		tie();
 	} else{
-		var random = aiRecord[Math.floor(Math.random()*(aiRecord.length))];
-		record[random] = turn;
-		$(".cell").eq(random).text(turn);
+		random();
 	}
 	turn = checkPlayer(turn);
 	// check if someone won!!
 	whoWin(); // check if anyone win
-	
 });
+}
+
+function random(){
+	var random = aiRecord[Math.floor(Math.random()*(aiRecord.length))];
+	record[random] = turn;
+	$(".cell").eq(random).text(turn);
+}
+
+
 
 
 $("#startGame").on("click",function(){
@@ -75,17 +85,20 @@ $("#startGame").on("click",function(){
 	$("#startGame").hide();
 	$("#replay").show();
 	$(".cell").css("background-color","#4CAF50")
+	gameStart();
 })
 
+
 $("#replay").on("click",function(){
+	record = [0,1,2,3,4,5,6,7,8];
+	aiRecord = [0,1,2,3,4,5,6,7,8];
 	chooseOX();
 	$("#O,#X").show(50);
-	
+	window.location.reload();
 });
 
 
 function whoWin(){
-
 	if(record[0] == record[1] && record[1] == record[2]){
 		$("#0,#1,#2").css("background-color","red");
 		win(record[0]);
@@ -111,13 +124,12 @@ function whoWin(){
 		$("#2,#4,#6").css("background-color","red");
 		win(record[2]);
 	}
-	
 } // whoWin
 
 function win(opt){
-	console.log(playerChose);
 	if(playerChose[0] == opt){
 		$("#win").show("slow");
+		$("#tie").hide();
 	}else{
 		$("#lose").show("slow");
 	}

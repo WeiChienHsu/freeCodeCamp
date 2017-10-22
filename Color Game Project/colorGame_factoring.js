@@ -50,8 +50,6 @@ function setupSqures(){
   	 	}
   	  });
 	}
-}
-
 function reset(){
 	colors = generateRandomColor(numOfSquares);
 	pickedColor = pickColor();
